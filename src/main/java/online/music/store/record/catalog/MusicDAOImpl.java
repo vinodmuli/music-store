@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 
 import online.music.store.record.model.DatabaseConstants;
 import online.music.store.record.model.DatabaseUtil;
-import online.music.store.record.model.IMusicRepository;
+import online.music.store.record.model.IMusicDAO;
 
 @Service
-public class MusicServiceImpl implements IMusicRepository {
+public class MusicDAOImpl implements IMusicDAO {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;

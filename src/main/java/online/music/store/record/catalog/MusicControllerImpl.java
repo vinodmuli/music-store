@@ -23,7 +23,7 @@ import online.music.store.record.model.WSReturnStatus;
 public class MusicControllerImpl implements IMusicController {
 
 	@Autowired
-	private MusicServiceImpl musicService;
+	private IMusicServiceImpl musicService;
 
 	@Override
 	@RequestMapping(method = RequestMethod.POST, value = "/create")

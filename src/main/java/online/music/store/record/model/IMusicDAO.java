@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import online.music.store.record.catalog.MusicStore;
 
-public interface IMusicRepository {
+public interface IMusicDAO {
 
 	public int addRecord(MusicStore musicStore);
 
