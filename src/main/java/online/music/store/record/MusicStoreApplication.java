@@ -1,4 +1,4 @@
-package online.music.store.record.main;
+package online.music.store.record;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
