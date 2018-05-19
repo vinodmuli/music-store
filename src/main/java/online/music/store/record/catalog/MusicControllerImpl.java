@@ -3,6 +3,7 @@ package online.music.store.record.catalog;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,14 +20,15 @@ import online.music.store.record.model.WSReturnStatus;
  *
  */
 @Controller
-@RequestMapping("/music")
+@RequestMapping("/music/online")
 public class MusicControllerImpl implements IMusicController {
 
 	@Autowired
 	private IMusicServiceImpl musicService;
 
 	@Override
-	@RequestMapping(method = RequestMethod.POST, value = "/create")
+	@PreAuthorize("hasAnyRole('ADMIN')")
+	@RequestMapping(method = RequestMethod.POST, value = "/create/record")
 	public @ResponseBody WSReturnStatus addRecord(@RequestBody MusicStore musicStore) {
 		try {
 			int id = musicService.addRecord(musicStore);
@@ -37,7 +39,7 @@ public class MusicControllerImpl implements IMusicController {
 	};
 
 	@Override
-	@RequestMapping(method = RequestMethod.GET, value = "/all")
+	@RequestMapping(method = RequestMethod.GET, value = "/all/records")
 	public @ResponseBody WSReturnStatus getAll() {
 		try {
 			Collection<MusicStore> records = musicService.getAll();
@@ -58,6 +60,8 @@ public class MusicControllerImpl implements IMusicController {
 		}
 	}
 
+	@Override
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public @ResponseBody WSReturnStatus deleteRecord(@PathVariable int id) {
 		try {
@@ -68,7 +72,9 @@ public class MusicControllerImpl implements IMusicController {
 		}
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/update")
+	@Override
+	@PreAuthorize("hasAnyRole('ADMIN')")
+	@RequestMapping(method = RequestMethod.PUT, value = "/update/record")
 	public @ResponseBody WSReturnStatus updateRecord(@RequestBody MusicStore musicStore) {
 
 		try {
